@@ -1,0 +1,20 @@
+{
+  "name": "vendor/vendor",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Papon",
+      "email": "paponkoushik@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "./"
+    ]
+  }
+}
