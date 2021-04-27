@@ -1,5 +1,10 @@
 <?php
 
+//Auth
+$router->get('login/index', 'LoginController@index');
+$router->post('login', 'LoginController@login');
+$router->get('logout', 'LoginController@logout');
+
 //Products
 $router->get('products', 'ProductController@index');
 $router->get('product/show', 'ProductController@show');

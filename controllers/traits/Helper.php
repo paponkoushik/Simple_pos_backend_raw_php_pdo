@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Traits;
 
-trait ProductHelper
+trait Helper
 {
     public function filterSpecialChar($array): array
     {
@@ -10,5 +10,10 @@ trait ProductHelper
         return array_map(function ($item) use ($pattern) {
             return preg_replace($pattern,' ', $item);
         }, $array);
+    }
+
+    public function baseUrl(): string
+    {
+        return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
     }
 }

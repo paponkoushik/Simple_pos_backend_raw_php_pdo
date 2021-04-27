@@ -5,11 +5,24 @@ namespace App\Controllers;
 
 
 use App\Config\App;
-use App\Controllers\Traits\ProductHelper;
+use App\Config\Session;
+use App\Controllers\Traits\Helper;
 
 class OrderController
 {
-    use ProductHelper;
+    use Helper;
+
+    public function __construct()
+    {
+        die(var_dump($root));
+        Session::init();
+        $auth = Session::get('user_id');
+        $is_admin = Session::get('is_admin');
+
+        if (!($auth && $is_admin == '1')) {
+            header("Location: http://localhost:8088/login/index");
+        }
+    }
 
     public function index()
     {

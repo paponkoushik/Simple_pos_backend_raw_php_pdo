@@ -5,11 +5,11 @@ namespace App\Controllers;
 
 
 use App\Config\App;
-use App\Controllers\Traits\ProductHelper;
+use App\Controllers\Traits\Helper;
 
 class ProductController
 {
-    use ProductHelper;
+    use Helper;
 
     public function index()
     {

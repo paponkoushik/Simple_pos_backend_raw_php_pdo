@@ -37,6 +37,20 @@ class QueryBuilder
 
     }
 
+    public function userSelect($query, $parameters)
+    {
+        try {
+            $statement = $this->pdo->prepare("{$query}");
+
+            $statement->execute($parameters);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+
+        } catch(Exception $e) {
+            echo $e;
+        }
+    }
+
     public function insert($table, $parameters)
     {
         $sql = sprintf(
