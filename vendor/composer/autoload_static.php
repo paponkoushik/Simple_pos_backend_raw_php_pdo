@@ -13,6 +13,7 @@ class ComposerStaticInit399c1dd31d792294c85d6fadc69dff89
         'App\\Config\\Request' => __DIR__ . '/../..' . '/config/Request.php',
         'App\\Config\\Router' => __DIR__ . '/../..' . '/config/Router.php',
         'App\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/controllers/CategoryController.php',
+        'App\\Controllers\\OrderController' => __DIR__ . '/../..' . '/controllers/OrderController.php',
         'App\\Controllers\\ProductController' => __DIR__ . '/../..' . '/controllers/ProductController.php',
         'App\\Controllers\\Traits\\ProductHelper' => __DIR__ . '/../..' . '/controllers/traits/ProductHelper.php',
         'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',

@@ -12,6 +12,7 @@ return array(
     'App\\Config\\Request' => $baseDir . '/config/Request.php',
     'App\\Config\\Router' => $baseDir . '/config/Router.php',
     'App\\Controllers\\CategoryController' => $baseDir . '/controllers/CategoryController.php',
+    'App\\Controllers\\OrderController' => $baseDir . '/controllers/OrderController.php',
     'App\\Controllers\\ProductController' => $baseDir . '/controllers/ProductController.php',
     'App\\Controllers\\Traits\\ProductHelper' => $baseDir . '/controllers/traits/ProductHelper.php',
     'App\\Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
