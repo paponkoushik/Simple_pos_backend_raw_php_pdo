@@ -51,7 +51,7 @@ class QueryBuilder
 
             $statement->execute($parameters);
         } catch (Exception $e) {
-            //
+            echo $e;
         }
     }
 
