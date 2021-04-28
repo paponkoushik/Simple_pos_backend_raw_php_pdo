@@ -23,20 +23,6 @@ class QueryBuilder
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function select($table, $parameter)
-    {
-        try {
-            $statement = $this->pdo->prepare("select * from {$table} where id=:id");
-
-            $statement->execute($parameter);
-
-            return $statement->fetchAll(PDO::FETCH_CLASS);
-        } catch(Exception $e) {
-            echo $e;
-        }
-
-    }
-
     public function userSelect($query, $parameters)
     {
         try {
@@ -69,12 +55,17 @@ class QueryBuilder
         }
     }
 
-    public function query($query, $parameters)
+    public function query($query, $parameters, $return = false)
     {
         try{
             $statement = $this->pdo->prepare("{$query}");
 
             $statement->execute($parameters);
+
+            if ($return) {
+                return $statement->fetchAll(PDO::FETCH_CLASS);
+            }
+
         }catch(Exception $e) {
             echo $e;
         }

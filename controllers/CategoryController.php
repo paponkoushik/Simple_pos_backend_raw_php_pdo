@@ -10,9 +10,10 @@ class CategoryController
 {
     public function index()
     {
-        $categories = App::get('database')->selectAll('categories');
-
+        header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
+
+        $categories = App::get('database')->selectAll('categories');
 
         echo json_encode($categories);
     }

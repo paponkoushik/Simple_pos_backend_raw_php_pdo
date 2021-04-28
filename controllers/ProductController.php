@@ -13,15 +13,19 @@ class ProductController
 
     public function index()
     {
-        $products = App::get('database')->selectAll('products');
-
+        header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
+
+        $products = App::get('database')->selectAll('products');
 
         echo json_encode($products);
     }
 
     public function store()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -32,10 +36,15 @@ class ProductController
 
     public function show()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+
         $product_id = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
-        $product = App::get('database')->select('products', $product_id);
+        $query = "Select * from products where id=:id";
+
+        $product = App::get('database')->query($query, $product_id, true);
 
         header('Content-Type: application/json');
 
@@ -44,6 +53,9 @@ class ProductController
 
     public function update()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -56,13 +68,25 @@ class ProductController
 
     public function delete()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+
         $product = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
-        $query = 'DELETE FROM products WHERE id=:id';
 
-        $delete = App::get('database')->query($query, $product);
+        $countQuery = "select COUNT(*) as count from orders WHERE product_id=:id";
 
-        echo json_encode("Product has been deleted successfully");
+        $count = App::get('database')->query($countQuery, $product, true);
+
+        if ($count[0]->count > 0) {
+            echo json_encode("There are orders for this product, that's why you can not delete this one");
+        } else {
+            $query = 'DELETE FROM products WHERE id=:id';
+
+            $delete = App::get('database')->query($query, $product);
+
+            echo json_encode("Product has been deleted successfully");
+        }
     }
 }
 
