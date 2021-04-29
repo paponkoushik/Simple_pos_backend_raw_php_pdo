@@ -25,14 +25,28 @@ class ProductController
 
     public function store()
     {
-        $products = $this
-            ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
+        $postData = $this->getData($_POST);
 
-        $create = App::get('database')->insert('products', $products);
+        if ($_FILES['image']) $postData['image'] =  $this->fileHandler($_FILES['image']);
+
+        $query = "INSERT INTO products (name, sku, description, category_id, price, image) VALUES (:name, :sku, :description, :category_id, :price, :image)";
+
+        App::get('database')->query($query, $postData);
 
         echo json_encode("Product has been insert successfully");
     }
 
+    public function getData($post): array
+    {
+        return [
+            'name' => $post['name'],
+            'sku' => $post['sku'],
+            'description' => $post['description'],
+            'category_id' => $post['category_id'],
+            'price' => $post['price'],
+            'image' => null,
+        ];
+    }
     public function show()
     {
         $product_id = $this

@@ -20,6 +20,21 @@ trait Helper
     public function setHeader()
     {
         header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        header('Content-Type: multipart/form-data');
+    }
+
+    public function fileHandler($file): string
+    {
+        $file_name = $file['name'];
+
+        $file_temp = $file['tmp_name'];
+
+        $div = explode('.', $file_name);
+        $file_ext = strtolower(end($div));
+        $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
+        $uploaded_image = "uploads/".$unique_image;
+        move_uploaded_file($file_temp, $uploaded_image);
+
+        return $uploaded_image;
     }
 }
