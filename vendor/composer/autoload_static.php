@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit399c1dd31d792294c85d6fadc69dff89
 {
+    public static $prefixLengthsPsr4 = array (
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+    );
+
     public static $classMap = array (
         'App\\Config\\App' => __DIR__ . '/../..' . '/config/App.php',
         'App\\Config\\Database\\Connection' => __DIR__ . '/../..' . '/config/database/Connection.php',
@@ -23,12 +37,18 @@ class ComposerStaticInit399c1dd31d792294c85d6fadc69dff89
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit399c1dd31d792294c85d6fadc69dff89' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'ProductService' => __DIR__ . '/../..' . '/services/ProductService.php',
+        'Firebase\\JWT\\BeforeValidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/BeforeValidException.php',
+        'Firebase\\JWT\\ExpiredException' => __DIR__ . '/..' . '/firebase/php-jwt/src/ExpiredException.php',
+        'Firebase\\JWT\\JWK' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWK.php',
+        'Firebase\\JWT\\JWT' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWT.php',
+        'Firebase\\JWT\\SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/SignatureInvalidException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit399c1dd31d792294c85d6fadc69dff89::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit399c1dd31d792294c85d6fadc69dff89::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit399c1dd31d792294c85d6fadc69dff89::$classMap;
 
         }, null, ClassLoader::class);

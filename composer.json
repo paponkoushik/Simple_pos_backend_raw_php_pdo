@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "firebase/php-jwt": "^5.2"
   },
   "autoload": {
     "classmap": [
