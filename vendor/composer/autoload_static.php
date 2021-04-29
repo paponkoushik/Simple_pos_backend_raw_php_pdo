@@ -23,6 +23,7 @@ class ComposerStaticInit399c1dd31d792294c85d6fadc69dff89
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit399c1dd31d792294c85d6fadc69dff89' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'ProductService' => __DIR__ . '/../..' . '/services/ProductService.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

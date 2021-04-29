@@ -61,12 +61,15 @@ class ProductController
 
     public function update()
     {
-        $products = $this
-            ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
+        $postData = $this->getData($_POST);
+
+        $postData['id'] = $_POST['id'];
+
+        if ($_FILES['new_image']) $postData['image'] =  $this->fileHandler($_FILES['new_image']);
 
         $query = 'UPDATE products SET name=:name, sku=:sku, description=:description, category_id=:category_id, price=:price, image=:image WHERE id=:id';
 
-        $update = App::get('database')->query($query, $products);
+        App::get('database')->query($query, $postData);
 
         echo json_encode("Product has been updated successfully");
     }
