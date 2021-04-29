@@ -27,7 +27,7 @@ class ProductController
     {
         $postData = $this->getData($_POST);
 
-        if ($_FILES['image']) $postData['image'] =  $this->fileHandler($_FILES['image']);
+        if (isset($_FILES['image'])) $postData['image'] =  $this->fileHandler($_FILES['image']);
 
         $query = "INSERT INTO products (name, sku, description, category_id, price, image) VALUES (:name, :sku, :description, :category_id, :price, :image)";
 
@@ -65,7 +65,7 @@ class ProductController
 
         $postData['id'] = $_POST['id'];
 
-        if ($_FILES['new_image']) $postData['image'] =  $this->fileHandler($_FILES['new_image']);
+        if (isset($_FILES['new_image'])) $postData['image'] =  $this->fileHandler($_FILES['new_image']);
 
         $query = 'UPDATE products SET name=:name, sku=:sku, description=:description, category_id=:category_id, price=:price, image=:image WHERE id=:id';
 
