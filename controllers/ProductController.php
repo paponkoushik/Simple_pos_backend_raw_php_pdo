@@ -11,10 +11,13 @@ class ProductController
 {
     use Helper;
 
-    public function index()
+    public function __construct()
     {
         $this->setHeader();
+    }
 
+    public function index()
+    {
         $products = App::get('database')->selectAll('products');
 
         echo json_encode($products);
@@ -22,8 +25,6 @@ class ProductController
 
     public function store()
     {
-        $this->setHeader();
-
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -34,8 +35,6 @@ class ProductController
 
     public function show()
     {
-        $this->setHeader();
-
         $product_id = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -48,8 +47,6 @@ class ProductController
 
     public function update()
     {
-        $this->setHeader();
-
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -62,8 +59,6 @@ class ProductController
 
     public function delete()
     {
-        $this->setHeader();
-
         $product = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 

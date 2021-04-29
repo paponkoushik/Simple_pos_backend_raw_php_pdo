@@ -9,10 +9,13 @@ class CategoryController
 {
     Use Helper;
 
-    public function index()
+    public function __construct()
     {
         $this->setHeader();
+    }
 
+    public function index()
+    {
         $categories = App::get('database')->selectAll('categories');
 
         echo json_encode($categories);

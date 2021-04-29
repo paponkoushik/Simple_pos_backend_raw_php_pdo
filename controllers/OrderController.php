@@ -22,12 +22,12 @@ class OrderController
 //        if (!($auth && $is_admin == '1')) {
 //            header("Location: http://localhost:8088/login/index");
 //        }
+
+        $this->setHeader();
     }
 
     public function index()
     {
-        $this->setHeader();
-
         $orders = App::get('database')->selectAll('orders');
 
         echo json_encode($orders);
@@ -35,8 +35,6 @@ class OrderController
 
     public function show()
     {
-        $this->setHeader();
-
         $order_id = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
@@ -62,14 +60,9 @@ class OrderController
         $data = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
 
-        $order = [
-            'status' => $data['status'],
-            'id' => $data['id']
-        ];
-
         $query ='UPDATE orders SET status=:status WHERE id=:id';
 
-        $update = App::get('database')->query($query, $order);
+        $update = App::get('database')->query($query, $data);
 
         echo json_encode("Order has been updated successfully");
     }
