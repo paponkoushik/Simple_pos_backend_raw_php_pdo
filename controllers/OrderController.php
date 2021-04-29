@@ -14,21 +14,21 @@ class OrderController
 
     public function __construct()
     {
-        die(var_dump($root));
-        Session::init();
-        $auth = Session::get('user_id');
-        $is_admin = Session::get('is_admin');
-
-        if (!($auth && $is_admin == '1')) {
-            header("Location: http://localhost:8088/login/index");
-        }
+//        die(var_dump($root));
+//        Session::init();
+//        $auth = Session::get('user_id');
+//        $is_admin = Session::get('is_admin');
+//
+//        if (!($auth && $is_admin == '1')) {
+//            header("Location: http://localhost:8088/login/index");
+//        }
     }
 
     public function index()
     {
-        $orders = App::get('database')->selectAll('orders');
+        $this->setHeader();
 
-        header('Content-Type: application/json');
+        $orders = App::get('database')->selectAll('orders');
 
         echo json_encode($orders);
     }

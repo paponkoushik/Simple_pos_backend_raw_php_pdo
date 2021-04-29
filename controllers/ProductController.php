@@ -43,8 +43,6 @@ class ProductController
 
         $product = App::get('database')->query($query, $product_id, true);
 
-        header('Content-Type: application/json');
-
         echo json_encode($product);
     }
 
@@ -73,6 +71,12 @@ class ProductController
 
         $count = App::get('database')->query($countQuery, $product, true);
 
+        $this->CheckCountDelete($count, $product);
+
+    }
+
+    public function CheckCountDelete($count, $product)
+    {
         if ($count[0]->count > 0) {
             echo json_encode("There are orders for this product, that's why you can not delete this one");
         } else {
