@@ -33,6 +33,20 @@ class OrderController
         echo json_encode($orders);
     }
 
+    public function show()
+    {
+        $this->setHeader();
+
+        $order_id = $this
+            ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
+
+        $query = "Select * from orders where id=:id";
+
+        $order = App::get('database')->query($query, $order_id, true);
+
+        echo json_encode($order);
+    }
+
     public function store()
     {
         $order = $this

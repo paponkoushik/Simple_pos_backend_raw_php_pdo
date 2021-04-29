@@ -17,5 +17,6 @@ $router->get('categories', 'CategoryController@index');
 
 //orders
 $router->get('orders', 'OrderController@index');
+$router->post('order/show', 'OrderController@show');
 $router->post('order/store', 'OrderController@store');
 $router->post('order/update', 'OrderController@update');
