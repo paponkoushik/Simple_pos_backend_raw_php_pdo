@@ -13,8 +13,7 @@ class ProductController
 
     public function index()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $products = App::get('database')->selectAll('products');
 
@@ -23,8 +22,7 @@ class ProductController
 
     public function store()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
@@ -36,8 +34,7 @@ class ProductController
 
     public function show()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $product_id = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
@@ -53,8 +50,7 @@ class ProductController
 
     public function update()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $products = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));
@@ -68,8 +64,7 @@ class ProductController
 
     public function delete()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $product = $this
             ->filterSpecialChar((array) json_decode(file_get_contents('php://input'), TRUE));

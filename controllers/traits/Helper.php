@@ -16,4 +16,10 @@ trait Helper
     {
         return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
     }
+
+    public function setHeader()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+    }
 }

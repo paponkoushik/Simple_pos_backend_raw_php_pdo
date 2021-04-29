@@ -1,17 +1,17 @@
 <?php
 
-
 namespace App\Controllers;
 
-
 use App\Config\App;
+use App\Controllers\Traits\Helper;
 
 class CategoryController
 {
+    Use Helper;
+
     public function index()
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
+        $this->setHeader();
 
         $categories = App::get('database')->selectAll('categories');
 
