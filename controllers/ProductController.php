@@ -6,10 +6,11 @@ namespace App\Controllers;
 
 use App\Config\App;
 use App\Controllers\Traits\Helper;
+use App\Controllers\Traits\ProductHelper;
 
 class ProductController
 {
-    use Helper;
+    use Helper, ProductHelper;
 
     public function __construct()
     {
@@ -36,17 +37,6 @@ class ProductController
         echo json_encode("Product has been insert successfully");
     }
 
-    public function getData($post): array
-    {
-        return [
-            'name' => $post['name'],
-            'sku' => $post['sku'],
-            'description' => $post['description'],
-            'category_id' => $post['category_id'],
-            'price' => $post['price'],
-            'image' => null,
-        ];
-    }
     public function show()
     {
         $product_id = $this
@@ -85,19 +75,6 @@ class ProductController
 
         $this->CheckCountDelete($count, $product);
 
-    }
-
-    public function CheckCountDelete($count, $product)
-    {
-        if ($count[0]->count > 0) {
-            echo json_encode("There are orders for this product, that's why you can not delete this one");
-        } else {
-            $query = 'DELETE FROM products WHERE id=:id';
-
-            $delete = App::get('database')->query($query, $product);
-
-            echo json_encode("Product has been deleted successfully");
-        }
     }
 }
 

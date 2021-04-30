@@ -17,6 +17,7 @@ return array(
     'App\\Controllers\\OrderController' => $baseDir . '/controllers/OrderController.php',
     'App\\Controllers\\ProductController' => $baseDir . '/controllers/ProductController.php',
     'App\\Controllers\\Traits\\Helper' => $baseDir . '/controllers/traits/Helper.php',
+    'App\\Controllers\\Traits\\ProductHelper' => $baseDir . '/controllers/traits/ProductHelper.php',
     'App\\Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
     'ComposerAutoloaderInit399c1dd31d792294c85d6fadc69dff89' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
